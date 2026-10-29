@@ -285,6 +285,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const voices = window.speechSynthesis.getVoices();
+    if (voices.length) {
+      playWithVoice(dialect, voices);
+      return;
+    }
+
+    let finished = false;
+    const handleVoicesChanged = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      if (!availableVoices.length || finished) return;
+      finished = true;
+      window.clearTimeout(voiceTimeout);
+      window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged);
+      playWithVoice(dialect, availableVoices);
+    };
+    const voiceTimeout = window.setTimeout(() => {
+      if (finished) return;
+      finished = true;
+      window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged);
+      const availableVoices = window.speechSynthesis.getVoices();
+      if (availableVoices.length) {
+        playWithVoice(dialect, availableVoices);
+      } else {
+        showToast("This browser doesn't have any speech voices available.");
+      }
+    }, 1500);
+    window.speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged);
+  };
+
+  const playWithVoice = (dialect, voices) => {
     const dialectCode = dialect.key === "sorani" ? "ckb" : "ku";
     const voice = voices.find((candidate) => candidate.lang.toLowerCase().startsWith(dialectCode))
       || voices.find((candidate) => candidate.lang.toLowerCase().startsWith("ar"))
@@ -310,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     title.textContent = "How would you like to practice?";
     const description = document.createElement("p");
     description.className = "practice-mode-description";
-    description.textContent = "Five words, with a different Kurdish dialect each time.";
+    description.textContent = "Five words with a randomly chosen dialect for each prompt.";
     const modes = document.createElement("div");
     modes.className = "practice-mode-options";
 
