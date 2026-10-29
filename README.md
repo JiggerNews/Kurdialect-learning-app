@@ -4,7 +4,7 @@ A calm, friendly vocabulary companion for exploring words across Sorani, Badini,
 
 ## Try it online
 
-Visit [Kurdialect](https://shewazarakan.github.io/Kurdialect-learning-app/).
+Visit [Kurdialect](https://jiggernews.github.io/Kurdialect-learning-app/).
 
 ## What you can do
 
