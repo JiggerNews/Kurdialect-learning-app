@@ -1,4 +1,4 @@
-const CACHE_NAME = "kurdialect-app-v3";
+const CACHE_NAME = "kurdialect-app-v4";
 const APP_ASSETS = [
   "./",
   "./index.html",

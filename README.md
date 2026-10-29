@@ -10,8 +10,8 @@ Visit [Kurdialect](https://jiggernews.github.io/Kurdialect-learning-app/).
 
 - Search all three dialects instantly and filter the collection by topic.
 - Save favorite words to a personal word book stored in your browser.
-- Practice with short flashcard sessions.
-- Listen to browser-provided pronunciation when a compatible speech voice is available.
+- Practice by typing translations or choosing from multiple-choice answers; each question can start in any of the three dialects.
+- Listen with your device's speech voices. Google Translate's direct speech endpoint does not currently return audio for Kurdish (`ckb`/`ku`), so the app uses the closest installed voice when a Kurdish voice is unavailable.
 - Copy all translations for a word.
 - Install the app and revisit the vocabulary offline.
 
